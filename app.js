@@ -45,7 +45,7 @@ function render(){
       const b=document.createElement("button");
       b.className="chip";
       b.dataset.team=e.team;          // 顏色交給 CSS 的 [data-team] 決定
-      b.textContent=e.team;
+      b.textContent=e.title;
       b.onclick=()=>openTicket(e);
       c.appendChild(b);
     });
