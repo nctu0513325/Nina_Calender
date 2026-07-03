@@ -67,7 +67,7 @@ function openTicket(e){
   document.getElementById("ticket").innerHTML = `
     <div class="band" data-team="${e.team}">
       <div class="date">${e.date}（${dow}）</div>
-      <div class="title">${e.team}・${e.title}</div>
+      <div class="title">${e.title}</div>
     </div>
     <div class="tear"></div>
     <div class="body">
