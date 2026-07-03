@@ -1,0 +1,102 @@
+/* ══════════════════════════════════════════
+   啦啦隊活動月曆 — 樣式表
+   ══════════════════════════════════════════ */
+
+/* ── 主題色（整體配色改這裡）─────────────── */
+:root{
+  --bg:    #EFEDE8;   /* 頁面背景 */
+  --card:  #FBFAF7;   /* 卡片底色 */
+  --ink:   #26231f;   /* 主要文字 */
+  --muted: #8a857c;   /* 次要文字 */
+  --line:  #d8d4cb;   /* 分隔線 */
+  --weekend: #A6002E; /* 週末字色 */
+}
+
+/* ── 各隊應援色（新增球隊就照格式加一段）──── */
+[data-team="樂天女孩"] { --team-color:#BF0000; --team-text:#fff; }    /* 樂天深紅 */
+[data-team="洋基女孩"] { --team-color:#0B6E4F; --team-text:#fff; }    /* 洋基工程綠 */
+[data-team="桃氣女孩"] { --team-color:#F48FB1; --team-text:#5c1f33; } /* 蜜桃粉 */
+/* 未定義的隊伍一律白色 */
+.chip, .band, .dot { --team-color:#ffffff; --team-text:#26231f; }
+.chip, .dot { border:1px solid rgba(0,0,0,.12); }
+
+/* ══════════════════════════════════════════
+   以下是版面樣式，通常不太需要動
+   ══════════════════════════════════════════ */
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:'PingFang TC','Noto Sans TC','Microsoft JhengHei',sans-serif;
+  padding:16px;
+}
+.wrap{max-width:860px;margin:0 auto}
+
+/* 標題 */
+.head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.eyebrow{font-size:12px;letter-spacing:.25em;color:var(--muted)}
+h1{margin:0;font-size:26px;font-weight:800;letter-spacing:.02em}
+
+/* 月份切換 */
+.monthbar{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.monthbar .label{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums}
+.navbtn{
+  border:1.5px solid #c9c4ba;background:var(--card);border-radius:8px;
+  width:34px;height:34px;font-size:18px;cursor:pointer;color:var(--ink);
+}
+
+/* 月曆 */
+.weekdays,.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.weekdays{margin-bottom:6px}
+.weekdays div{text-align:center;font-size:12px;font-weight:700;color:var(--muted);padding:4px 0}
+.weekdays div:first-child,.weekdays div:last-child{color:var(--weekend)}
+.cell{min-height:84px;background:var(--card);border-radius:10px;padding:6px;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+.cell.empty{background:transparent;box-shadow:none}
+.cell .num{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:4px}
+.cell.today .num{color:#fff;background:var(--ink);display:inline-block;border-radius:6px;padding:0 5px}
+
+/* 活動色塊 */
+.chip{
+  display:block;width:100%;text-align:left;border:none;cursor:pointer;
+  border-radius:5px;padding:3px 6px;font-size:11px;font-weight:700;line-height:1.3;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:3px;
+  font-family:inherit;
+  background:var(--team-color);color:var(--team-text);
+}
+
+/* 圖例 */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.legend span{display:flex;align-items:center;gap:5px;font-size:12px;color:#57534b}
+.dot{width:10px;height:10px;border-radius:3px;display:inline-block;background:var(--team-color)}
+
+/* 詳情票根 */
+.overlay{
+  position:fixed;inset:0;background:rgba(30,27,22,.5);
+  display:none;align-items:center;justify-content:center;z-index:50;padding:12px;
+}
+.overlay.open{display:flex}
+.ticket{width:min(400px,92vw);background:var(--card);border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.3)}
+.band{padding:16px 20px;background:var(--team-color);color:var(--team-text)}
+.band .date{font-size:11px;letter-spacing:.2em;opacity:.85}
+.band .title{font-size:21px;font-weight:800}
+.tear{border-top:2px dashed var(--line);margin:0 14px}
+.ticket .body{padding:16px 20px;display:grid;gap:10px}
+.row{display:flex;gap:12px;font-size:14px}
+.row .k{width:40px;flex-shrink:0;color:var(--muted);font-weight:700}
+.row .v{font-weight:600}
+.mapbtn{
+  margin-top:6px;display:block;text-align:center;text-decoration:none;
+  background:var(--ink);color:#fff;border-radius:10px;padding:12px 0;
+  font-size:15px;font-weight:800;
+}
+.closebtn{background:none;border:none;color:var(--muted);font-size:13px;cursor:pointer;padding:6px;font-family:inherit}
+
+.hint{margin-top:20px;font-size:12px;color:var(--muted);line-height:1.7}
+code{background:#e5e1d8;border-radius:4px;padding:1px 5px;font-size:11px}
+
+/* 手機版 */
+@media (max-width:480px){
+  .cell{min-height:64px;padding:4px}
+  .chip{font-size:10px;padding:2px 4px}
+  h1{font-size:22px}
+}
