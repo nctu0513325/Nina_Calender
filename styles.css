@@ -12,13 +12,18 @@
   --weekend: #A6002E; /* 週末字色 */
 }
 
-/* ── 各隊應援色（新增球隊就照格式加一段）──── */
+/* ── 各隊應援色 ──────────────────────────────
+   注意：預設值必須寫在最前面，
+   後面的 [data-team] 規則才蓋得過去 */
+
+/* 未定義的隊伍一律白色（預設） */
+.chip, .band, .dot { --team-color:#ffffff; --team-text:#26231f; }
+.chip, .dot { border:1px solid rgba(0,0,0,.12); }
+
+/* 各隊代表色（新增球隊就照格式加一段） */
 [data-team="樂天女孩"] { --team-color:#BF0000; --team-text:#fff; }    /* 樂天深紅 */
 [data-team="洋基女孩"] { --team-color:#0B6E4F; --team-text:#fff; }    /* 洋基工程綠 */
 [data-team="桃氣女孩"] { --team-color:#F48FB1; --team-text:#5c1f33; } /* 蜜桃粉 */
-/* 未定義的隊伍一律白色 */
-.chip, .band, .dot { --team-color:#ffffff; --team-text:#26231f; }
-.chip, .dot { border:1px solid rgba(0,0,0,.12); }
 
 /* ══════════════════════════════════════════
    以下是版面樣式，通常不太需要動

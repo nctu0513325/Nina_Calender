@@ -55,7 +55,7 @@ function render(){
       b.className="chip";
       b.dataset.team=e.team;              // 顏色交給 CSS 的 [data-team] 決定
       b.textContent=e.title;              // 色塊顯示活動名稱
-      b.title=`${e.team}・${e.title}`;    // 電腦版滑鼠停留顯示完整資訊
+      b.title=`${e.title}`;    // 電腦版滑鼠停留顯示完整資訊
       b.onclick=()=>openTicket(e);
       c.appendChild(b);
     });
