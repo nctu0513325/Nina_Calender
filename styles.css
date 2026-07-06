@@ -20,6 +20,9 @@
 .chip, .band, .dot { --team-color:#ffffff; --team-text:#26231f; }
 .chip, .dot { border:1px solid rgba(0,0,0,.12); }
 
+/* ══════════════════════════════════════════
+   以下是版面樣式，通常不太需要動
+   ══════════════════════════════════════════ */
 
 *{box-sizing:border-box}
 body{
@@ -33,6 +36,15 @@ body{
 .head{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .eyebrow{font-size:12px;letter-spacing:.25em;color:var(--muted)}
 h1{margin:0;font-size:26px;font-weight:800;letter-spacing:.02em}
+
+/* IG 連結 */
+.socials{display:flex;gap:8px}
+.igbtn{
+  display:inline-block;text-decoration:none;font-size:13px;font-weight:700;
+  color:var(--ink);border:1.5px solid var(--ink);border-radius:999px;
+  padding:6px 14px;background:var(--card);
+}
+.igbtn:hover{background:var(--ink);color:#fff}
 
 /* 月份切換 */
 .monthbar{display:flex;align-items:center;gap:14px;margin-bottom:10px}
