@@ -50,7 +50,9 @@ function render(){
     const num=document.createElement("div");
     num.className="num"; num.textContent=d; c.appendChild(num);
 
-    events.filter(e=>e.date===keyOf(year,month,d)).forEach(e=>{
+    events.filter(e=>e.date===keyOf(year,month,d))
+          .sort((a,b)=>(a.time||"99:99").localeCompare(b.time||"99:99"))
+          .forEach(e=>{
       const b=document.createElement("button");
       b.className="chip";
       b.dataset.team=e.team;              // 顏色交給 CSS 的 [data-team] 決定
