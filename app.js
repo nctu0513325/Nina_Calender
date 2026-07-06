@@ -2,6 +2,7 @@
 const TEAM_NAMES = ["樂天女孩", "洋基女孩", "桃氣女孩", "其他"];
 
 let events = [];        // 目前顯示月份的活動
+let VENUES = {};   // 場館 → 地址對照表
 let year, month;        // month 是 0-indexed
 const monthCache = {};  // 已載入過的月份快取，避免重複下載
 
@@ -68,12 +69,13 @@ function render(){
 // ── 詳情票根 ─────────────────────────────────
 function openTicket(e){
   const dow=WEEKDAYS[new Date(e.date+"T00:00:00").getDay()];
-  const maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(e.address||e.venue);
+  const addr = e.address || VENUES[e.venue] || "";
+  const maps="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(addr||e.venue);
   const rows=[
     ["連結", e.link],
     ["時間", e.time||"未定"],
     ["地點", e.venue],
-    ["地址", e.address],
+    ["地址", addr],
     ["備註", e.note]
   ].filter(r=>r[1]);
 
@@ -114,5 +116,11 @@ document.getElementById("next").onclick=()=>nav(1);
 
 // ── 啟動 ─────────────────────────────────────
 renderLegend();
-const now=new Date();
-showMonth(now.getFullYear(), now.getMonth());
+fetch("venues.json?t="+Date.now())
+  .then(r=>r.ok ? r.json() : {})
+  .then(v=>{ VENUES=v; })
+  .catch(()=>{})
+  .finally(()=>{
+    const now=new Date();
+    showMonth(now.getFullYear(), now.getMonth());
+  });
